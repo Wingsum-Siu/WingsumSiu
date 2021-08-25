@@ -1,0 +1,61 @@
+/* h1{
+    color:blue;
+}
+
+li{
+    color: rgb(154, 95, 123);
+}
+
+p{
+    color: #3d5d8f;
+}
+
+h4{
+    color:rgba(23, 123, 12, .5)
+}
+
+body{
+    background-image: url(https://lh3.googleusercontent.com/5xse4wnunqoLwqoXl4L1VAJ9t-Wsnn4UHurxgxVtZM-FurhAibspyPoXziyvXOhxP4olRFhlCDmmEZjSEJ5S-C3tvQ=w640-h400-e365-rj-sc0x00ffffff);
+    background-repeat: no-repeat;
+} 
+
+div{
+    background: blue;
+    /* border:pink;
+    border-width: 50px;
+    border-style: solid;
+    border: pink 10px dashed;
+}
+
+span{
+    background: green;
+    color: red;
+ }  */
+
+ /* .firstdiv{
+     color: blue;
+ }
+
+ .seconddiv{
+     background-color: salmon;
+ }
+
+ #singlep{
+     color:skyblue;
+ } */
+
+ h1{
+     font-family: 'Oswald', sans-serif;
+ }
+
+ p{
+     font-size: 30px;
+     font-family: 'Oswald', sans-serif;
+     font-weight: bold;
+     font-style: italic;
+     text-align: center;
+ }
+
+ #two{
+     font-family: fantasy;
+ }
