@@ -16,7 +16,7 @@ s = 'flask'
 # 'f'
 print(s[0])
 # 's'
-print(s[3])
+print(s[3]) 
 # 'ask'
 print(s[2:5])
 # 'las'
@@ -26,6 +26,7 @@ print(s[4])
 
 # Bonus: Use indexing to reverse the string
 
+# a   
 
 ###############
 ## Problem 2 ##
