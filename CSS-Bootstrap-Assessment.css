@@ -1,11 +1,22 @@
 .yellowdiv{
-    background-color: rgba(255, 249, 208, 0.5);
+    /* background-color: rgba(255, 249, 208, 0.5); */
+    background: linear-gradient(0deg, rgb(255, 254, 248), rgb(248, 234, 219));
     color: rgb(145, 116, 87);
     font-family: 'Dawning of a New Day', cursive;
     font-size: 80px;
     text-align: center;
+    border: pink 6px dashed;
 }
 
-#names{
-    font-size: 40px;
+#smaller{
+    font-size: 30px;
+    background: white;
+    border:none;
+}
+
+#font{
+    font-family: 'Dawning of a New Day', cursive;
+    font-size: 30px;
+    /* background-color: rgb(250, 243, 234); */
+    background-color: rgba(252, 250, 240, 0.5);
 }
