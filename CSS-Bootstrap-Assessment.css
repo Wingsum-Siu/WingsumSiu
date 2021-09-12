@@ -8,16 +8,8 @@
     border: pink 6px dashed;
 }
 
-.text{
-    font-family: 'Dawning of a New Day', cursive;
-    text-align: center;
-    color: rgb(145, 116, 87);
-    font-size: 30px;
-    
-}
 #shadow{
     /* text-decoration: thistle; */
-    
     text-shadow: 2px 2px violet;
 }
 
