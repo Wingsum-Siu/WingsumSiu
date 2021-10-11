@@ -8,3 +8,9 @@ $(function () {
     // document.title = "your site name"
 
   })
+  
+
+  jQuery(document).ready(function() {
+    $("#results").html(output); 
+  });
+

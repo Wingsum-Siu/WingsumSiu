@@ -14,6 +14,151 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  
+  
+  <script type="text/javascript">
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const email = urlParams.get('email');
+    const name = urlParams.get('name');
+    const date = urlParams.get('date');
+    const watchtime = urlParams.get('watchtime');
+    const seriesnum = urlParams.get('seriesnum');
+    const timespenteva = urlParams.get('timespenteva');
+    var output = "User: " + email + "<br>Date: " + date + "<br><br>Hi " + name + "!" + "<br>Your watch time was " + watchtime + ". <br>You completed " + seriesnum + " series. <br>And did you think it was a good way to spend your time? " + timespenteva;
+  </script> 
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+
+// Load the Visualization API and the piechart package.
+google.charts.load('current', {'packages':['corechart']});
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawChart2);
+google.charts.setOnLoadCallback(drawChart3);
+
+function drawChart() {
+
+  // Create the data table.
+  var hourdata = new google.visualization.DataTable();
+  hourdata.addColumn('string', 'User');
+  hourdata.addColumn('number', 'Hours');
+  hourdata.addRows([
+    ['Average Watch Time', 2.5],
+    ['Your Watch Time', Number(watchtime)],
+  ]);
+
+  // Set chart options
+  var options = {'title':'Watch Time Comparison',
+                 colors: ['#4ecacf'],
+                 'width':800,
+                 'height':400};
+
+  // Instantiate and draw our chart, passing in some options.
+  var chart = new google.visualization.BarChart(document.getElementById('hourchart'));
+  chart.draw(hourdata, options);
+}
+
+function drawChart2() {
+
+  // Create the data table.
+  var seriesnumdata = new google.visualization.DataTable();
+  seriesnumdata.addColumn('string', 'User');
+  seriesnumdata.addColumn('number', 'Series Number');
+  seriesnumdata.addRows([
+    ['0 Series', 25],
+    ['1 Series', 8],
+    ['2 Series', 7],
+    ['3 Series', 2],
+    ['4 Series', 1],
+    ['5+ Series', 2],
+  ]);
+
+  // Set chart options
+  var options = {'title':'Series Number (in a week) Comparison',
+                 colors: ['#189ea3', '#51c5c9', '#81dade', '#a2e7eb', '#bff0f2', '#d5f6f7'],
+                 'width':800,
+                 'height':400};
+
+  // Instantiate and draw our chart, passing in some options.
+  var chart = new google.visualization.PieChart(document.getElementById('seriesnumchart'));
+  chart.draw(seriesnumdata, options);
+  
+}
+
+function drawChart3() {
+
+  // Create the data table.
+  var evanumdata = new google.visualization.DataTable();
+  evanumdata.addColumn('string', 'User');
+  evanumdata.addColumn('number', 'Eva. Count');
+  evanumdata.addRows([
+    ['Yes', 37],
+    ['No', 8],
+  ]);
+
+  // Set chart options
+  var options = {'title':'Evaluation Comparison',
+                 colors: ['#189ea3', '#81dade'],
+                 'width':800,
+                 'height':400};
+
+  // Instantiate and draw our chart, passing in some options.
+  var chart = new google.visualization.PieChart(document.getElementById('evanumchart'));
+  chart.draw(evanumdata, options);
+}
+</script>
+
+<script type="text/javascript">
+
+  function timediff() {
+    var timediff = Number(watchtime) - 2.5;
+    if (timediff != 0){
+      document.write(Math.abs(timediff) + " hours");
+    }
+  }
+
+  function timeexpl() {
+    var timediff = Number(watchtime) - 2.5;
+    var moreless = "";
+    if (timediff > 0){
+      moreless = "more than"
+    } else if (timediff < 0) {
+      moreless = "less than"
+    } else{
+      moreless = "the same as"
+    }
+    document.write(moreless);
+  }
+
+  function seriesnumexpl(){
+    var ynmajority = "";
+    if (seriesnum == 0) {
+      ynmajority = "Over 50% of our users voted the same way!"
+    } else {
+      ynmajority = "You watched more than majority of our users!"
+    }
+    document.write(ynmajority);
+  }
+
+  function evaexpl(){
+    var ynmajority = "";
+    if (timespenteva == "Yes") {
+      ynmajority = "Over 50% of our users thought the same way!"
+    } else {
+      ynmajority = "17.8% of our users also voted the same way!"
+    }
+    document.write(ynmajority);
+  }
+</script>
+
 </head>
 <body>
   <div data-include="nav"></div>
@@ -31,9 +176,60 @@
           </div>
       </div>
       <div class="col-4 px-0">
-          <img src="eve.png" width=400px alt="oops">
+          <img src="kokoro.png" width=400px alt="oops">
       </div>
     </div>
+
+    <br>
+    <div id="offedge" class="resultsuserdata">
+      <h3 id="formshadow">Your data:</h3>
+      <div id="results"></div>
+    </div>
+
+    <br> <hr>
+    <div class="graphlayout" id="offedge">
+      <br>
+      <h3 id="formshadow">Our Average Time vs. Your Time</h3>
+      <ul> 
+        <li>
+          <h1 class="graphexplain">
+            Your time was
+            <script>timediff()</script> 
+            <script>timeexpl()</script> 
+            the average time!
+          </h1>
+        </li>
+      </ul>
+      <div id="hourchart" class="moveup"></div>
+    </div>
+    <br> <hr class="moveup">
+    <div class="graphlayout" id="offedge">
+      <br>
+      <h3 id="formshadow">How Does Your Number of Series Watched Compare?</h3>
+      <ul> 
+        <li>
+          <h1 class="graphexplain">
+            <script>seriesnumexpl()</script> 
+          </h1>
+        </li>
+      </ul>
+      <div id="seriesnumchart" class="moveup"></div>
+    </div>
+    <br> <hr class="moveup">
+    <div class="graphlayout" id="offedge">
+      <br>
+      <h3 id="formshadow">How Did Your Evaluation Compare?</h3>
+      <ul> 
+        <li>
+          <h1 class="graphexplain">
+            <script>evaexpl()</script> 
+          </h1>
+        </li>
+      </ul>
+      <div id="evanumchart" class="moveup"></div>
+    </div>
+    
+    
 
   <!--Bootstrap and other JS scripts-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

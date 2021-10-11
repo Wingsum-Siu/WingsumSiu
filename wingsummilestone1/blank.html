@@ -10,6 +10,47 @@ page that contains all the code you need for a new page.-->
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
   <title>OT CS Capstone</title>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    // function drawChart() {
+    //   // Define the chart to be drawn.
+    //   var data = new google.visualization.DataTable();
+    //   data.addColumn('string', 'Element');
+    //   data.addColumn('number', 'Percentage');
+    //   data.addRows([
+    //     ['Nitrogen', 0.78],
+    //     ['Oxygen', 0.21],
+    //     ['Other', 0.01]
+    //   ]);
+
+    //   // Instantiate and draw the chart.
+    //   var chart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+    //   chart.draw(data, null);
+    // }
+    function drawSheetName() {
+      var queryString = encodeURIComponent('SELECT A, H, O, Q, R, U LIMIT 5 OFFSET 8');
+
+      var query = new google.visualization.Query(
+          'https://docs.google.com/spreadsheets/d/1qDYEbga_BUlBpdKH0lOLH_gpk75XapyMmvHuBcMS4hs/edit?usp=sharing' + queryString);
+      query.send(handleSampleDataQueryResponse);
+    }
+
+    function handleSampleDataQueryResponse(response) {
+      if (response.isError()) {
+        alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+        return;
+      }
+
+      var data = response.getDataTable();
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, { height: 400 });
+    }
+
+  </script>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 <body>
   <!--Navbar-->
@@ -17,32 +58,11 @@ page that contains all the code you need for a new page.-->
   <!--Whole page container div-->
   <div class="container">
 
+  </div>
 
+  <!-- Identify where the chart should be drawn. -->
+  <div id="drawChart"/>
 
-  </div>
-  <div class="row">
-    <div class="col-md-4">.col-md-4</div>
-    <div class="col-md-4 ml-auto">.col-md-4 .ml-auto</div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 ml-md-auto">.col-md-3 .ml-md-auto</div>
-    <div class="col-md-3 ml-md-auto">.col-md-3 .ml-md-auto</div>
-  </div>
-  <div class="row">
-    <div class="col-auto mr-auto">.col-auto .mr-auto</div>
-    <div class="col-auto">.col-auto</div>
-  </div>
-  <div class="row">
-    <div class="col-md-4">.col-md-4</div>
-    <div class="col-md-4 offset-md-4">.col-md-4 .offset-md-4</div>
-  </div>
-  <div class="row">
-    <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
-    <div class="col-md-3 offset-md-3">.col-md-3 .offset-md-3</div>
-  </div>
-  <div class="row">
-    <div class="col-md-6 offset-md-3">.col-md-6 .offset-md-3</div>
-  </div>
   <!--Bootstrap and other JS scripts-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
